@@ -72,7 +72,7 @@ export const allResources: RequestHandler = async (
     if (Array.isArray(resources)) {
       const myJSON = JSON.stringify(resources);
       clientRedis.setex(resourceType + userID, 86400, myJSON);
-      console.log("casehd");
+
       return res.status(201).json(resources);
     }
     return res.status(404).json({

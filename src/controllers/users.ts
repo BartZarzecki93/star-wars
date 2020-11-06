@@ -57,7 +57,7 @@ export const logIn: RequestHandler = async (req: Request, res: Response) => {
       return res.status(403).json({
         message: "Wrong Password or Username"
       });
-    //{ expiresIn: "60s" }
+
     const token = jwt.sign({ user }, "secretkey");
 
     return res.status(201).json({
