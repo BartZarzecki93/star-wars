@@ -21,7 +21,8 @@ npm start
 
 Run redis. (Cache information for 24 hours on each endpoint)
 
-Then use postman/insomnia with `http://localhost:8080/cats`
+Then use postman/insomnia with `http://localhost:8080/users` for registering and login in,
+`http://localhost:8080/resources/` for getting the resources  
 
 
 ### Swagger
