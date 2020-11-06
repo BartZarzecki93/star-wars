@@ -1,0 +1,871 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Star Wars API",
+        "description": "Star Wars API (Heros and Resources)"
+    },
+    "host": "localhost:8080",
+    "tags": [
+        {
+            "name": "Users",
+            "description": "API for users in the system"
+        },
+        {
+            "name": "Resources",
+            "description": "API for resources in the system"
+        }
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "securityDefinitions": {
+        "jwt": {
+            "type": "apiKey",
+            "in": "header",
+            "name": "authorization"
+        }
+    },
+    "paths": {
+        "/user/register": {
+            "post": {
+                "summary": "Register User",
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "User Registration Object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Register"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Registration Success",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "403": {
+                        "description": "User already exists",
+                        "schema": {
+                            "$ref": "#/definitions/Message"
+                        }
+                    },
+                    "500": {
+                        "description": "User registration failed!!"
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "post": {
+                "summary": "Login User",
+                "tags": [
+                    "Users"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "User Login Object",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Register"
+                        }
+                    }
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Login Success",
+                        "schema": {
+                            "$ref": "#/definitions/Login"
+                        }
+                    },
+                    "403": {
+                        "description": "Wrong Password or Username",
+                        "schema": {
+                            "$ref": "#/definitions/Message"
+                        }
+                    },
+                    "500": {
+                        "description": "User registration failed!!"
+                    }
+                }
+            }
+        },
+        "/resources/films": {
+            "get": {
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ],
+                "summary": "Get films of the Hero",
+                "tags": [
+                    "Resources"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Films were found",
+                        "schema": {
+                            "$ref": "#/definitions/Films"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    },
+                    "401": {
+                        "description": "User is unauthorized"
+                    },
+                    "500": {
+                        "description": "Server Error!!"
+                    }
+                }
+            }
+        },
+        "/resources/species": {
+            "get": {
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ],
+                "summary": "Get species of the Hero",
+                "tags": [
+                    "Resources"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "species were found",
+                        "schema": {
+                            "$ref": "#/definitions/Species"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    },
+                    "401": {
+                        "description": "User is unauthorized"
+                    },
+                    "500": {
+                        "description": "Server Error!!"
+                    }
+                }
+            }
+        },
+        "/resources/vehicles": {
+            "get": {
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ],
+                "summary": "Get vehicles of the Hero",
+                "tags": [
+                    "Resources"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "vehicles were found",
+                        "schema": {
+                            "$ref": "#/definitions/Vehicles"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    },
+                    "401": {
+                        "description": "User is unauthorized"
+                    },
+                    "500": {
+                        "description": "Server Error!!"
+                    }
+                }
+            }
+        },
+        "/resources/starships": {
+            "get": {
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ],
+                "summary": "Get starships of the Hero",
+                "tags": [
+                    "Resources"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "starships were found",
+                        "schema": {
+                            "$ref": "#/definitions/Starships"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    },
+                    "401": {
+                        "description": "User is unauthorized"
+                    },
+                    "500": {
+                        "description": "Server Error!!"
+                    }
+                }
+            }
+        },
+        "/resources/planets": {
+            "get": {
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ],
+                "summary": "Get planets of the Hero",
+                "tags": [
+                    "Resources"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "planets were found",
+                        "schema": {
+                            "$ref": "#/definitions/Planets"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    },
+                    "401": {
+                        "description": "User is unauthorized"
+                    },
+                    "500": {
+                        "description": "Server Error!!"
+                    }
+                }
+            }
+        },
+        "/resources/films/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the resource that we want to find",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ],
+                "summary": "Get film of the Hero that belongs only to him/her",
+                "tags": [
+                    "Resources"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Film was found",
+                        "schema": {
+                            "$ref": "#/definitions/Film"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    },
+                    "401": {
+                        "description": "User is unauthorized"
+                    },
+                    "500": {
+                        "description": "Server Error!!"
+                    }
+                }
+            }
+        },
+        "/resources/species/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the resource that we want to find",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ],
+                "summary": "Get specie of the Hero that belongs only to him/her",
+                "tags": [
+                    "Resources"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Species were found",
+                        "schema": {
+                            "$ref": "#/definitions/Specie"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    },
+                    "401": {
+                        "description": "User is unauthorized"
+                    },
+                    "500": {
+                        "description": "Server Error!!"
+                    }
+                }
+            }
+        },
+        "/resources/vehicles/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the resource that we want to find",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ],
+                "summary": "Get vehicle of the Hero that belongs only to him/her",
+                "tags": [
+                    "Resources"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "vehicle was found",
+                        "schema": {
+                            "$ref": "#/definitions/Vehicle"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    },
+                    "401": {
+                        "description": "User is unauthorized"
+                    },
+                    "500": {
+                        "description": "Server Error!!"
+                    }
+                }
+            }
+        },
+        "/resources/starships/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the resource that we want to find",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ],
+                "summary": "Get starship of the Hero that belongs only to him/her",
+                "tags": [
+                    "Resources"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "starship was found",
+                        "schema": {
+                            "$ref": "#/definitions/Starship"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    },
+                    "401": {
+                        "description": "User is unauthorized"
+                    },
+                    "500": {
+                        "description": "Server Error!!"
+                    }
+                }
+            }
+        },
+        "/resources/planets/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the resource that we want to find",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "security": [
+                    {
+                        "jwt": []
+                    }
+                ],
+                "summary": "Get planet of the Hero that belongs only to him/her",
+                "tags": [
+                    "Resources"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "planet was found",
+                        "schema": {
+                            "$ref": "#/definitions/Planet"
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    },
+                    "401": {
+                        "description": "User is unauthorized"
+                    },
+                    "500": {
+                        "description": "Server Error!!"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Planet": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "diameter": {
+                    "type": "string"
+                },
+                "rotation_period": {
+                    "type": "string"
+                },
+                "orbital_period": {
+                    "type": "string"
+                },
+                "gravity": {
+                    "type": "string"
+                },
+                "population": {
+                    "type": "string"
+                },
+                "climate": {
+                    "type": "string"
+                },
+                "terrain": {
+                    "type": "string"
+                },
+                "surface_water": {
+                    "type": "string"
+                },
+                "residents": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "films": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "url": {
+                    "type": "string"
+                },
+                "created": {
+                    "type": "string"
+                },
+                "edited": {
+                    "type": "string"
+                }
+            }
+        },
+        "Planets": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Planet"
+            }
+        },
+        "Starship": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "model": {
+                    "type": "string"
+                },
+                "starship_class": {
+                    "type": "string"
+                },
+                "manufacturer": {
+                    "type": "string"
+                },
+                "length": {
+                    "type": "string"
+                },
+                "cost_in_credits": {
+                    "type": "string"
+                },
+                "crew": {
+                    "type": "string"
+                },
+                "passengers": {
+                    "type": "string"
+                },
+                "max_atmosphering_speed": {
+                    "type": "string"
+                },
+                "hyperdrive_rating": {
+                    "type": "string"
+                },
+                "MGLT": {
+                    "type": "string"
+                },
+                "cargo_capacity": {
+                    "type": "string"
+                },
+                "consumables": {
+                    "type": "string"
+                },
+                "films": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "pilots": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "url": {
+                    "type": "string"
+                },
+                "created": {
+                    "type": "string"
+                },
+                "edited": {
+                    "type": "string"
+                }
+            }
+        },
+        "Starships": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Vehicle"
+            }
+        },
+        "Vehicle": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "model": {
+                    "type": "string"
+                },
+                "vehicle_class": {
+                    "type": "string"
+                },
+                "manufacturer": {
+                    "type": "string"
+                },
+                "length": {
+                    "type": "string"
+                },
+                "cost_in_credits": {
+                    "type": "string"
+                },
+                "crew": {
+                    "type": "string"
+                },
+                "passengers": {
+                    "type": "string"
+                },
+                "max_atmosphering_speed": {
+                    "type": "string"
+                },
+                "cargo_capacity": {
+                    "type": "string"
+                },
+                "consumables": {
+                    "type": "string"
+                },
+                "films": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "pilots": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "url": {
+                    "type": "string"
+                },
+                "created": {
+                    "type": "string"
+                },
+                "edited": {
+                    "type": "string"
+                }
+            }
+        },
+        "Vehicles": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Vehicle"
+            }
+        },
+        "Specie": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "classification": {
+                    "type": "string"
+                },
+                "designation": {
+                    "type": "string"
+                },
+                "average_height": {
+                    "type": "string"
+                },
+                "average_lifespan": {
+                    "type": "string"
+                },
+                "eye_colors": {
+                    "type": "string"
+                },
+                "hair_colors": {
+                    "type": "string"
+                },
+                "skin_colors": {
+                    "type": "string"
+                },
+                "language": {
+                    "type": "string"
+                },
+                "homeworld": {
+                    "type": "string"
+                },
+                "people": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "films": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "url": {
+                    "type": "string"
+                },
+                "created": {
+                    "type": "string"
+                },
+                "edited": {
+                    "type": "string"
+                }
+            }
+        },
+        "Species": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Film"
+            }
+        },
+        "Film": {
+            "type": "object",
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "episode_id": {
+                    "type": "number"
+                },
+                "opening_crawl": {
+                    "type": "string"
+                },
+                "director": {
+                    "type": "string"
+                },
+                "producer": {
+                    "type": "string"
+                },
+                "release_date": {
+                    "type": "string"
+                },
+                "species": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "starships": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "vehicles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "characters": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "planets": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "url": {
+                    "type": "string"
+                },
+                "created": {
+                    "type": "string"
+                },
+                "edited": {
+                    "type": "string"
+                }
+            }
+        },
+        "Films": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Film"
+            }
+        },
+        "Register": {
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "Message": {
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "User": {
+            "type": "object",
+            "properties": {
+                "user": {
+                    "properties": {
+                        "_id": {
+                            "type": "string"
+                        },
+                        "email": {
+                            "type": "string"
+                        },
+                        "password": {
+                            "type": "number"
+                        },
+                        "heroId": {
+                            "type": "number"
+                        },
+                        "heroName": {
+                            "type": "string"
+                        },
+                        "__v": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        },
+        "Login": {
+            "properties": {
+                "message": {
+                    "type": "string"
+                },
+                "token": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
